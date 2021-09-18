@@ -8,13 +8,17 @@ import utils.SOLUTION_HERE
 //TODO: Enable tests by removing `!` prefix
 class Exercise1 : WordSpec({
     //tag::init[]
-    fun fib(i: Int): Int =
+    fun fib(i: Int): Int {
+        tailrec fun f(idx: Int, cur: Int, next: Int): Int =
+            if (idx == 0) cur
+            else f(idx - 1, next, cur + next)
 
-        SOLUTION_HERE()
+        return f(i, 0, 1)
+    }
     //end::init[]
 
     "fib" should {
-        "!return the nth fibonacci number" {
+        "return the nth fibonacci number" {
             persistentMapOf(
                 1 to 1,
                 2 to 1,
